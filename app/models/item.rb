@@ -3,11 +3,6 @@ class Item < ApplicationRecord
 
   validates :item_name, presence: true
   validates :item_explanation, presence: true
-  validates :item_category_id, presence: true
-  validates :item_status_id, presence: true
-  validates :burden_of_charge_id, presence: true
-  validates :delivery_prefecture_id, presence: true
-  validates :delivery_days_id, presence: true
   
   HANKAKU_REGEX = /\A[0-9]+\z/.freeze
   validates :price, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}, format: { with: HANKAKU_REGEX }
@@ -21,12 +16,11 @@ class Item < ApplicationRecord
   belongs_to :delivery_prefecture
   belongs_to :delivery_days
 
-  validates :item_category_id, numericality: { other_than: 1, message: "can't be blank" } 
-  validates :item_status_id, numericality: { other_than: 1, message: "can't be blank" }  
-  validates :burden_of_charge_id, numericality: { other_than: 1, message: "can't be blank" }  
-  validates :delivery_prefecture_id, numericality: { other_than: 1, message: "can't be blank" } 
-  validates :delivery_days_id, numericality: { other_than: 1, message: "can't be blank" } 
-
+  validates :item_category_id, presence: true
+  validates :item_status_id, presence: true
+  validates :burden_of_charge_id, presence: true 
+  validates :delivery_prefecture_id, presence: true
+  validates :delivery_days_id, presence: true
 
 
   has_one_attached :image
