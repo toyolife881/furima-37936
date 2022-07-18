@@ -47,7 +47,7 @@ RSpec.describe Item, type: :model do
         @item.burden_of_charge = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Burden of charge can't be blank")
-      end      
+      end
       # //delivery_prefectureのテスト//
       it 'delivery_prefectureが未選択では登録できない' do
         @item.delivery_prefecture = nil
@@ -67,22 +67,20 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
       it 'priceが300〜9999999円の間でないと登録できない(300円より小さい場合)' do
-       @item.price = '299'
-       @item.valid?
-       expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
+        @item.price = '299'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price must be greater than or equal to 300')
       end
       it 'priceが300〜9999999円の間でないと登録できない(9999999円より大きい場合)' do
         @item.price = '10000000'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
-       end
+        expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
+      end
       it 'priceが半角数値でないと保存できない' do
-       @item.price = '５００'
-       @item.valid?
-       expect(@item.errors.full_messages).to include("Price is not a number")
+        @item.price = '５００'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
     end
   end
-  
-
 end
