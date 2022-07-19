@@ -8,4 +8,11 @@ class ApplicationController < ActionController::Base
                                       keys: [:nickname, :email, :encrypted_password, :last_name, :first_name, :last_name_kana,
                                              :first_name_kana, :birth_day])
   end
+
+  def basic_auth
+    authenticate_or_request_with_http_basic do |username, password|
+      username == ENV['BASIC_AUTH_USER'] && password == ENV['BASIC_AUTH_PASSWORD']
+    end
+  end
+  
 end
