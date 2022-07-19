@@ -4,10 +4,10 @@ function item() {
   price.addEventListener('input',() => {
 
     const addTaxPrice = document.getElementById("add-tax-price");
-    addTaxPrice.innerHTML = Math.round(price.value * 0.1);
+    addTaxPrice.innerHTML = Math.floor(price.value * 0.1);
     const profit = document.getElementById("profit");
 
-    profit.innerHTML = Math.round(price.value - Math.round(price.value * 0.1));
+    profit.innerHTML = Math.floor(price.value - Math.floor(price.value * 0.1));
   
   });
 
