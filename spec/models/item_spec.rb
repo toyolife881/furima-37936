@@ -7,12 +7,7 @@ RSpec.describe Item, type: :model do
 
   describe '商品登録' do
     context '商品登録できるとき' do
-      it 'image、item_name、item_explanation、item_category、item_status、burden_of_charge、delivery_prefecture、delivery_days、priceが存在すれば登録できる' do
-        @item.item_category_id = rand(2..11)
-        @item.item_status_id = rand(2..7)
-        @item.burden_of_charge_id = rand(2..3)
-        @item.delivery_prefecture_id = rand(2..48)
-        @item.delivery_days_id = rand(2..4)
+      it 'image、item_name、item_explanation、item_category_id、item_status_id、burden_of_charge_id、delivery_prefecture_id、delivery_days_id、priceが存在すれば登録できる' do
         expect(@item).to be_valid
       end
     end
@@ -35,57 +30,57 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Item explanation can't be blank")
       end
-      # //item_categoryのテスト//
-      it 'item_categoryが未選択では登録できない' do
-        @item.item_category = nil
+      # //item_category_idのテスト//
+      it 'item_category_idが未選択では登録できない' do
+        @item.item_category_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Item category can't be blank")
       end
-      it 'item_categoryで「---」を選択したら登録できない' do
+      it 'item_category_idで「---」を選択したら登録できない' do
         @item.item_category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Item category can't be blank")
       end
-      # //item_statusのテスト//
-      it 'item_statusが未選択では登録できない' do
-        @item.item_status = nil
+      # //item_status_idのテスト//
+      it 'item_status_idが未選択では登録できない' do
+        @item.item_status_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Item status can't be blank")
       end
-      it 'item_statusで「---」を選択したら登録できない' do
+      it 'item_status_idで「---」を選択したら登録できない' do
         @item.item_status_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Item status can't be blank")
       end
-      # //burden_of_chargeのテスト//
-      it 'burden_of_chargeが未選択では登録できない' do
-        @item.burden_of_charge = nil
+      # //burden_of_charge_idのテスト//
+      it 'burden_of_charge_idが未選択では登録できない' do
+        @item.burden_of_charge_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Burden of charge can't be blank")
       end
-      it 'burden_of_chargeで「---」を選択したら登録できない' do
+      it 'burden_of_charge_idで「---」を選択したら登録できない' do
         @item.burden_of_charge_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Burden of charge can't be blank")
       end
-      # //delivery_prefectureのテスト//
-      it 'delivery_prefectureが未選択では登録できない' do
-        @item.delivery_prefecture = nil
+      # //delivery_prefecture_idのテスト//
+      it 'delivery_prefecture_idが未選択では登録できない' do
+        @item.delivery_prefecture_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery prefecture can't be blank")
       end
-      it 'delivery_prefectureで「---」を選択したら登録できない' do
+      it 'delivery_prefecture_idで「---」を選択したら登録できない' do
         @item.delivery_prefecture_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery prefecture can't be blank")
       end
-      # //delivery_daysのテスト//
-      it 'delivery_daysが未選択では登録できない' do
-        @item.delivery_days = nil
+      # //delivery_days_idのテスト//
+      it 'delivery_days_idが未選択では登録できない' do
+        @item.delivery_days_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery days can't be blank")
       end
-      it 'delivery_daysで「---」を選択したら登録できない' do
+      it 'delivery_days_idで「---」を選択したら登録できない' do
         @item.delivery_days_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery days can't be blank")
