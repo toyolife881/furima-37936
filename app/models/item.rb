@@ -14,11 +14,11 @@ class Item < ApplicationRecord
   belongs_to :delivery_prefecture
   belongs_to :delivery_days
 
-  validates :item_category_id, presence: true, numericality: { other_than: 1, message: "can't be blank" } 
-  validates :item_status_id, presence: true, numericality: { other_than: 1, message: "can't be blank" } 
-  validates :burden_of_charge_id, presence: true, numericality: { other_than: 1, message: "can't be blank" } 
-  validates :delivery_prefecture_id, presence: true, numericality: { other_than: 1, message: "can't be blank" } 
-  validates :delivery_days_id, presence: true, numericality: { other_than: 1, message: "can't be blank" } 
+  validates :item_category_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
+  validates :item_status_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
+  validates :burden_of_charge_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
+  validates :delivery_prefecture_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
+  validates :delivery_days_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
 
   has_one_attached :image
 
