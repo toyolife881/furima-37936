@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
   end
 
   def new
-    redirect_to new_user_session_path unless user_signed_in?
+    authenticate_user!
     @item = Item.new
   end
 
