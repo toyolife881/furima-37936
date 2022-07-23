@@ -1,12 +1,12 @@
 class ItemsController < ApplicationController
   before_action :basic_auth
+  before_action :authenticate_user!, only:[:new]
 
   def index
     @items = Item.all.order('created_at DESC')
   end
 
   def new
-    authenticate_user!
     @item = Item.new
   end
 
