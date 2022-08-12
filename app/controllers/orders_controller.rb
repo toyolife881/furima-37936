@@ -1,9 +1,9 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: :index
+  before_action :set_item, only: [:index, :create]
 
 
   def index
-    @item = Item.find(params[:item_id])
     unless current_user.id == @item.user_id || Order.where(item_id: @item.id).exists? 
      @order_address = OrderAddress.new
     else
@@ -12,7 +12,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new(order_params)
     if @order_address.valid?
       pay_item
@@ -29,13 +28,16 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-    # Payjp.api_key = "sk_test_a25027a6ca4a30b4511d47d5"
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
       Payjp::Charge.create(
         amount: @item.price,  # 商品の値段
         card: order_params[:token],    # カードトークン
         currency: 'jpy'                 # 通貨の種類（日本円）
       )
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
   end
 
 end
