@@ -1,5 +1,4 @@
 const pay = () => {
-  // Payjp.setPublicKey("pk_test_e4e33f519fe8fab7534c8ffb"); // PAY.JPテスト公開鍵
   Payjp.setPublicKey(process.env.PAYJP_PUBLIC_KEY);
   const submit = document.getElementById("button");
   submit.addEventListener("click", (e) => {
@@ -19,7 +18,7 @@ const pay = () => {
       if (status == 200) {
         const token = response.id;
         const renderDom = document.getElementById("charge-form");
-        const tokenObj = `<input value=${token} name='token' type="hidden">`;
+        const tokenObj = `<input value=${token} name="token" type="hidden">`;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
       }
       
