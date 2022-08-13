@@ -24,7 +24,15 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    redirect_to root_path unless current_user.id == @item.user_id
+    if current_user.id != @item.user_id || Order.where(item_id: @item.id).exists?
+      redirect_to root_path
+     end
+    # unless current_user.id == @item.user_id
+    #  redirect_to root_path
+    # end
+    # unless Order.where(item_id: @item.id).empty?
+    #  redirect_to root_path
+    # end
   end
 
   def update
@@ -42,7 +50,6 @@ class ItemsController < ApplicationController
   end
 
   private
-
   def item_params
     params.require(:item).permit(:image, :item_name, :item_explanation, :item_category_id, :item_status_id, :burden_of_charge_id,
                                  :delivery_prefecture_id, :delivery_days_id, :price).merge(user_id: current_user.id)
