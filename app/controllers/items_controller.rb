@@ -27,12 +27,6 @@ class ItemsController < ApplicationController
     if current_user.id != @item.user_id || Order.where(item_id: @item.id).exists?
       redirect_to root_path
      end
-    # unless current_user.id == @item.user_id
-    #  redirect_to root_path
-    # end
-    # unless Order.where(item_id: @item.id).empty?
-    #  redirect_to root_path
-    # end
   end
 
   def update
